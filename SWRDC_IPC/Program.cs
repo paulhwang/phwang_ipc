@@ -65,6 +65,10 @@ namespace SWRDC_IPC
         }
     }
 
+    class GetacSwrdcIpcCore
+    {
+    }
+
     class GetacSwrdcIpcApi
     {
         public NetworkStream ApiTcpServer (int port_var)
@@ -74,7 +78,8 @@ namespace SWRDC_IPC
             GetacSwrdcUtil.DebugIt("ApiTcpServer", "end");
             return stream;
         }
-        public NetworkStream TcpServer(int port_var)
+
+        public NetworkStream TcpServer (int port_var)
         {
             GetacSwrdcUtil.DebugIt("TcpServer", "start");
 
@@ -82,29 +87,11 @@ namespace SWRDC_IPC
             listener.Start();
             GetacSwrdcUtil.DebugIt("TcpServer", "after listener.Start()");
 
-            Socket socket = listener.AcceptSocket();
-            GetacSwrdcUtil.DebugIt("TcpServer", "after AcceptSocket()");
+            TcpClient client = listener.AcceptTcpClient();
+            GetacSwrdcUtil.DebugIt("TcpServer", "after AcceptTcpClient");
 
-            NetworkStream stream = new NetworkStream(socket);
-            //NetworkStream stream = socket.GetStream();
-            GetacSwrdcUtil.DebugIt("TcpServer", "after NetworkStream");
-
-            /*
-            try
-            {
-                byte[] bytesFrom = new byte[10025];
-                stream.Read(bytesFrom, 0, (int)socket.ReceiveBufferSize);
-                string dataFromClient = System.Text.Encoding.ASCII.GetString(bytesFrom);
-                GetacSwrdcUtil.DebugIt("ApiListener", dataFromClient);
-
-                dataFromClient = dataFromClient.Substring(0, dataFromClient.IndexOf("$"));
-                Console.WriteLine(" >> Data from client - " + dataFromClient);
-            }
-            catch (Exception ex)
-            {
-                GetacSwrdcUtil.DebugIt("ApiListener", "exception");
-            }
-            */
+            NetworkStream stream = client.GetStream();
+            GetacSwrdcUtil.DebugIt("TcpServer", "after GetStream");
 
             GetacSwrdcUtil.DebugIt("TcpServer", "end");
             return stream;
@@ -118,24 +105,16 @@ namespace SWRDC_IPC
             return stream;
         }
 
-        public NetworkStream TcpClient(string ip_addr_var, int port_var)
+        public NetworkStream TcpClient (string ip_addr_var, int port_var)
         {
             GetacSwrdcUtil.DebugIt("TcpClient", "start");
-
-            //TcpClient client = new TcpClient();
-            //IPEndPoint server_end_point = new IPEndPoint(IPAddress.Parse(ip_addr_var), port_var);
-            //client.Connect(server_end_point);
-
-
-            System.Net.Sockets.TcpClient client_socket = new System.Net.Sockets.TcpClient();
-            client_socket.Connect(ip_addr_var, port_var);
-            NetworkStream stream = client_socket.GetStream();
-
+            TcpClient client = new TcpClient(ip_addr_var, port_var);
+            NetworkStream stream = client.GetStream();
             GetacSwrdcUtil.DebugIt("TcpClient", "end");
             return stream;
         }
 
-        public void ApiTcpTransmitData(NetworkStream stream_var, string data_var)
+        public void ApiTcpTransmitData (NetworkStream stream_var, string data_var)
         {
             GetacSwrdcUtil.DebugIt("ApiTcpTransmitData", "start");
             GetacSwrdcUtil.DebugIt("ApiTcpTransmitData", data_var);
@@ -143,42 +122,17 @@ namespace SWRDC_IPC
             GetacSwrdcUtil.DebugIt("ApiTcpTransmitData", "end");
         }
 
-        public void TcpTransmitData(NetworkStream stream_var, string data_var)
+        public void TcpTransmitData (NetworkStream stream_var, string data_var)
         {
             GetacSwrdcUtil.DebugIt("TcpTransmitData", "start");
             GetacSwrdcUtil.DebugIt("TcpTransmitData", data_var);
-            StreamReader reader = new StreamReader(stream_var);
-
-            byte[] data = System.Text.Encoding.ASCII.GetBytes(data_var + "$");
-            //byte[] data = "hello from phwang";
-            stream_var.Write(data, 0, data.Length);
-            stream_var.Flush();
+            BinaryWriter writer = new BinaryWriter(stream_var);
+            writer.Write(data_var);
+            writer.Flush();
             GetacSwrdcUtil.DebugIt("TcpTransmitData", "end");
         }
 
-        public void ApiTransmitData_old (NetworkStream stream_var, string data_var)
-        {
-            GetacSwrdcUtil.DebugIt("ApiTransmitData", data_var);
-            StreamReader reader = new StreamReader(stream_var);
-
-            byte[] data = System.Text.Encoding.ASCII.GetBytes(data_var + "$");
-            //byte[] data = "hello from phwang";
-            stream_var.Write(data, 0, data.Length);
-            stream_var.Flush();
-        }
-
-        public void ApiTransmitString(NetworkStream stream_var, string data_var)
-        {
-            GetacSwrdcUtil.DebugIt("ApiTransmitString", data_var);
-            StreamReader reader = new StreamReader(stream_var);
-
-            byte[] data = System.Text.Encoding.ASCII.GetBytes(data_var + "$");
-            //byte[] data = "hello from phwang";
-            stream_var.Write(data, 0, data.Length);
-            stream_var.Flush();
-        }
-
-        public void ApiTcpReceiveData(NetworkStream stream_var)
+        public void ApiTcpReceiveData (NetworkStream stream_var)
         {
             GetacSwrdcUtil.DebugIt("ApiTcpReceiveData", "start");
             TCpReceiveData(stream_var);
@@ -186,14 +140,14 @@ namespace SWRDC_IPC
 
         }
 
-        public void TCpReceiveData(NetworkStream stream_var)
+        public void TCpReceiveData (NetworkStream stream_var)
         {
             GetacSwrdcUtil.DebugIt("TCpReceiveData", "start");
-            StreamReader reader = new StreamReader(stream_var);
+            BinaryReader reader = new BinaryReader(stream_var);
 
             try
             {
-                string data = reader.ReadLine();
+                string data = reader.ReadString();
                 GetacSwrdcUtil.DebugIt("TCpReceiveData", data);
             }
             catch (Exception ex)
@@ -202,40 +156,6 @@ namespace SWRDC_IPC
             }
 
             GetacSwrdcUtil.DebugIt("TCpReceiveData", "end");
-        }
-
-        public void TCpReceiveData_old (NetworkStream stream_var)
-        {
-            GetacSwrdcUtil.DebugIt("TCpReceiveData", "start");
-            StreamReader reader = new StreamReader(stream_var);
-
-            try
-            {
-                string data = reader.ReadLine();
-                GetacSwrdcUtil.DebugIt("TCpReceiveData", data);
-            }
-            catch (Exception ex)
-            {
-                GetacSwrdcUtil.DebugIt("TCpReceiveData", "exception");
-            }
-
-            GetacSwrdcUtil.DebugIt("TCpReceiveData", "end");
-        }
-
-        public void ApiReceiveString(NetworkStream stream_var)
-        {
-            GetacSwrdcUtil.DebugIt("ApiReceiveString", "start");
-            StreamReader reader = new StreamReader(stream_var);
-
-            try
-            {
-                string data = reader.ReadLine();
-                GetacSwrdcUtil.DebugIt("ApiListener", data);
-            }
-            catch (Exception ex)
-            {
-                GetacSwrdcUtil.DebugIt("ApiListener", "exception");
-            }
         }
     }
 
