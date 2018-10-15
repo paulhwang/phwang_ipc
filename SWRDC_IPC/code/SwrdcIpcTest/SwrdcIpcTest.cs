@@ -10,6 +10,26 @@ namespace GetacSwrdc.IpcTest
 {
     class IpcTestClass
     {
+        public static void TestIpc ()
+        {
+            Utils.DebugClass.DebugIt("Main", "start");
+
+            Thread server_thread = new Thread(GetacSwrdc.IpcTest.IpcTestClass.TestServer);
+            server_thread.Start(5);
+            Thread.Sleep(3000);
+
+            Thread client_thread = new Thread(GetacSwrdc.IpcTest.IpcTestClass.TestClient);
+            client_thread.Start(5);
+
+            //while (true)
+            {
+                //GetacSwrdcUtil.DebugIt("Main", "waiting");
+                Thread.Sleep(1000);
+            }
+
+            Utils.DebugClass.DebugIt("Main", "end");
+        }
+
         public static void TestServer(object var)
         {
             int port = 9000;
