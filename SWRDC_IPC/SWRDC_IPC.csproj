@@ -42,9 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="code\SwrdcIpcApi.cs" />
-    <Compile Include="code\SwrdcIpcCore.cs" />
-    <Compile Include="code\SwrdcUtils.cs" />
+    <Compile Include="code\SwdcIpc\SwrdcIpcApi.cs" />
+    <Compile Include="code\SwdcIpc\SwrdcIpcCore.cs" />
+    <Compile Include="code\SwrdcUtils\SwrdcUtils.cs" />
     <Compile Include="code\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

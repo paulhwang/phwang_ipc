@@ -15,7 +15,7 @@ namespace GetacSwrdc
     {
         static void Main(string[] args)
         {
-            Utils.UtilsClass.DebugIt("Main", "start");
+            Utils.DebugClass.DebugIt("Main", "start");
 
             Thread server_thread = new Thread(TestServer);
             server_thread.Start(5);

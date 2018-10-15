@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GetacSwrdc.Utils
 {
-    class UtilsClass
+    class DebugClass
     {
         public static void DebugIt(string var1, string var2)
         {
