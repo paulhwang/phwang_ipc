@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="code\SwdcIpc\SwrdcIpcTest.cs" />
     <Compile Include="code\SwdcIpc\SwrdcIpcApi.cs" />
     <Compile Include="code\SwdcIpc\SwrdcIpcCore.cs" />
     <Compile Include="code\SwrdcUtils\SwrdcUtils.cs" />
