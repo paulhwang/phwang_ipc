@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GetacSwrdc.Ipc
+namespace GetacSwrdc.IpcCore
 {
     class IpcCoreClass
-    {
-    }
-    class IpcApiClass
     {
     }
 }
