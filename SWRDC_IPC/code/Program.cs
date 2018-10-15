@@ -30,7 +30,7 @@ namespace GetacSwrdc
                 Thread.Sleep(1000);
             }
 
-            GetacSwrdcUtilClass.DebugIt("Main", "end");
+            Utils.DebugClass.DebugIt("Main", "end");
         }
 
         private static void TestServer (object var)
@@ -56,7 +56,7 @@ namespace GetacSwrdc
             NetworkStream stream = ipc_api.ApiTcpClient(ip_addr, port);
             if (stream == null)
             {
-                GetacSwrdcUtilClass.DebugIt("TestClient", "***** null stream");
+                Utils.DebugClass.DebugIt("TestClient", "***** null stream");
                 return;
             }
 
@@ -69,57 +69,57 @@ namespace GetacSwrdc
     {
         public NetworkStream TcpServer(int port_var)
         {
-            GetacSwrdcUtilClass.DebugIt("TcpServer", "start");
+            Utils.DebugClass.DebugIt("TcpServer", "start");
 
             TcpListener listener = new TcpListener(System.Net.IPAddress.Parse("127.0.0.1"), port_var);
             listener.Start();
-            GetacSwrdcUtilClass.DebugIt("TcpServer", "after listener.Start()");
+            Utils.DebugClass.DebugIt("TcpServer", "after listener.Start()");
 
             TcpClient client = listener.AcceptTcpClient();
-            GetacSwrdcUtilClass.DebugIt("TcpServer", "after AcceptTcpClient");
+            Utils.DebugClass.DebugIt("TcpServer", "after AcceptTcpClient");
 
             NetworkStream stream = client.GetStream();
-            GetacSwrdcUtilClass.DebugIt("TcpServer", "after GetStream");
+            Utils.DebugClass.DebugIt("TcpServer", "after GetStream");
 
-            GetacSwrdcUtilClass.DebugIt("TcpServer", "end");
+            Utils.DebugClass.DebugIt("TcpServer", "end");
             return stream;
         }
 
         public NetworkStream TcpClient(string ip_addr_var, int port_var)
         {
-            GetacSwrdcUtilClass.DebugIt("TcpClient", "start");
+            Utils.DebugClass.DebugIt("TcpClient", "start");
             TcpClient client = new TcpClient(ip_addr_var, port_var);
             NetworkStream stream = client.GetStream();
-            GetacSwrdcUtilClass.DebugIt("TcpClient", "end");
+            Utils.DebugClass.DebugIt("TcpClient", "end");
             return stream;
         }
 
         public void TcpTransmitData(NetworkStream stream_var, string data_var)
         {
-            GetacSwrdcUtilClass.DebugIt("TcpTransmitData", "start");
-            GetacSwrdcUtilClass.DebugIt("TcpTransmitData", data_var);
+            Utils.DebugClass.DebugIt("TcpTransmitData", "start");
+            Utils.DebugClass.DebugIt("TcpTransmitData", data_var);
             BinaryWriter writer = new BinaryWriter(stream_var);
             writer.Write(data_var);
             writer.Flush();
-            GetacSwrdcUtilClass.DebugIt("TcpTransmitData", "end");
+            Utils.DebugClass.DebugIt("TcpTransmitData", "end");
         }
 
         public void TCpReceiveData(NetworkStream stream_var)
         {
-            GetacSwrdcUtilClass.DebugIt("TCpReceiveData", "start");
+            Utils.DebugClass.DebugIt("TCpReceiveData", "start");
             BinaryReader reader = new BinaryReader(stream_var);
 
             try
             {
                 string data = reader.ReadString();
-                GetacSwrdcUtilClass.DebugIt("TCpReceiveData", data);
+                Utils.DebugClass.DebugIt("TCpReceiveData", data);
             }
             catch (Exception ex)
             {
-                GetacSwrdcUtilClass.DebugIt("TCpReceiveData", "exception");
+                Utils.DebugClass.DebugIt("TCpReceiveData", "exception");
             }
 
-            GetacSwrdcUtilClass.DebugIt("TCpReceiveData", "end");
+            Utils.DebugClass.DebugIt("TCpReceiveData", "end");
         }
     }
 
@@ -129,51 +129,33 @@ namespace GetacSwrdc
 
         public NetworkStream ApiTcpServer (int port_var)
         {
-            GetacSwrdcUtilClass.DebugIt("ApiTcpServer", "start");
+            Utils.DebugClass.DebugIt("ApiTcpServer", "start");
             NetworkStream stream = ipc_core.TcpServer(port_var);
-            GetacSwrdcUtilClass.DebugIt("ApiTcpServer", "end");
+            Utils.DebugClass.DebugIt("ApiTcpServer", "end");
             return stream;
         }
 
         public NetworkStream ApiTcpClient (string ip_addr_var, int port_var)
         {
-            GetacSwrdcUtilClass.DebugIt("ApiTcpClient", "start");
+            Utils.DebugClass.DebugIt("ApiTcpClient", "start");
             NetworkStream stream = ipc_core.TcpClient(ip_addr_var, port_var);
-            GetacSwrdcUtilClass.DebugIt("ApiTcpClient", "end");
+            Utils.DebugClass.DebugIt("ApiTcpClient", "end");
             return stream;
         }
 
         public void ApiTcpTransmitData (NetworkStream stream_var, string data_var)
         {
-            GetacSwrdcUtilClass.DebugIt("ApiTcpTransmitData", "start");
-            GetacSwrdcUtilClass.DebugIt("ApiTcpTransmitData", data_var);
+            Utils.DebugClass.DebugIt("ApiTcpTransmitData", "start");
+            Utils.DebugClass.DebugIt("ApiTcpTransmitData", data_var);
             ipc_core.TcpTransmitData(stream_var, data_var);
-            GetacSwrdcUtilClass.DebugIt("ApiTcpTransmitData", "end");
+            Utils.DebugClass.DebugIt("ApiTcpTransmitData", "end");
         }
 
         public void ApiTcpReceiveData (NetworkStream stream_var)
         {
-            GetacSwrdcUtilClass.DebugIt("ApiTcpReceiveData", "start");
+            Utils.DebugClass.DebugIt("ApiTcpReceiveData", "start");
             ipc_core.TCpReceiveData(stream_var);
-            GetacSwrdcUtilClass.DebugIt("ApiTcpReceiveData", "end");
-
-        }
-    }
-
-    class GetacSwrdcUtilClass
-    {
-        public static void DebugIt (string var1, string var2)
-        {
-            DebugIt_(var1, var2);
-        }
-
-        static void DebugIt_(string var1, string var2)
-        {
-            Debug.WriteLine(var2, var1);
-        }
-
-        public static void AbendIt (string var1, string var2)
-        {
+            Utils.DebugClass.DebugIt("ApiTcpReceiveData", "end");
 
         }
     }
