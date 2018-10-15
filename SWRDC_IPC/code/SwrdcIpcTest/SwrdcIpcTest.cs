@@ -12,8 +12,6 @@ namespace GetacSwrdc.IpcTest
     {
         public static void TestIpc ()
         {
-            Utils.DebugClass.DebugIt("Main", "start");
-
             Thread server_thread = new Thread(GetacSwrdc.IpcTest.IpcTestClass.TestServer);
             server_thread.Start(5);
             Thread.Sleep(3000);
@@ -26,8 +24,6 @@ namespace GetacSwrdc.IpcTest
                 //GetacSwrdcUtil.DebugIt("Main", "waiting");
                 Thread.Sleep(1000);
             }
-
-            Utils.DebugClass.DebugIt("Main", "end");
         }
 
         public static void TestServer(object var)
@@ -41,7 +37,12 @@ namespace GetacSwrdc.IpcTest
                 return;
             }
 
-            ipc_api.ApiTcpReceiveData(stream);
+ 
+            while (true)
+            {
+                string data = ipc_api.ApiTcpReceiveData(stream);
+                Utils.DebugClass.DebugIt("TestServer receive:", data);
+            }
         }
 
         public static void TestClient(object var)
@@ -58,7 +59,10 @@ namespace GetacSwrdc.IpcTest
             }
 
             Thread.Sleep(3000);
-            ipc_api.ApiTcpTransmitData(stream, "hellp from phwang");
+            for (int i = 0; i < 10; i++)
+            {
+                ipc_api.ApiTcpTransmitData(stream, "hellp from phwang");
+            }
         }
     }
 }

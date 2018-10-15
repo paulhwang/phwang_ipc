@@ -13,34 +13,27 @@ namespace GetacSwrdc.IpcApi
 
         public NetworkStream ApiTcpServer(int port_var)
         {
-            Utils.DebugClass.DebugIt("ApiTcpServer", "start");
-            NetworkStream stream = ipc_core.TcpServer(port_var);
-            Utils.DebugClass.DebugIt("ApiTcpServer", "end");
-            return stream;
+             NetworkStream stream = ipc_core.TcpServer(port_var);
+             return stream;
         }
 
         public NetworkStream ApiTcpClient(string ip_addr_var, int port_var)
         {
-            Utils.DebugClass.DebugIt("ApiTcpClient", "start");
             NetworkStream stream = ipc_core.TcpClient(ip_addr_var, port_var);
-            Utils.DebugClass.DebugIt("ApiTcpClient", "end");
             return stream;
         }
 
         public void ApiTcpTransmitData(NetworkStream stream_var, string data_var)
         {
-            Utils.DebugClass.DebugIt("ApiTcpTransmitData", "start");
-            Utils.DebugClass.DebugIt("ApiTcpTransmitData", data_var);
+            //Utils.DebugClass.DebugIt("ApiTcpTransmitData", data_var);
             ipc_core.TcpTransmitData(stream_var, data_var);
-            Utils.DebugClass.DebugIt("ApiTcpTransmitData", "end");
         }
 
-        public void ApiTcpReceiveData(NetworkStream stream_var)
+        public string ApiTcpReceiveData(NetworkStream stream_var)
         {
-            Utils.DebugClass.DebugIt("ApiTcpReceiveData", "start");
-            ipc_core.TCpReceiveData(stream_var);
-            Utils.DebugClass.DebugIt("ApiTcpReceiveData", "end");
-
+            string data = ipc_core.TCpReceiveData(stream_var);
+            //Utils.DebugClass.DebugIt("ApiTcpReceiveData", data_var);
+            return data;
         }
     }
 }
