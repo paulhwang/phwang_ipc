@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GetacSwrdc.Utils
+{
+    class Utils
+    {
+        public static void DebugIt(string var1, string var2)
+        {
+            DebugIt_(var1, var2);
+        }
+
+        static void DebugIt_(string var1, string var2)
+        {
+            System.Diagnostics.Debug.WriteLine(var2, var1);
+        }
+
+        public static void AbendIt(string var1, string var2)
+        {
+
+        }
+    }
+}
