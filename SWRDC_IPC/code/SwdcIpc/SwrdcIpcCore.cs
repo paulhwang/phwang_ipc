@@ -42,14 +42,30 @@ namespace GetacSwrdc.IpcCore
             writer.Flush();
         }
 
+        string ReceivedData = null;
+
         public string TCpReceiveData(NetworkStream stream_var)
+        {
+            if (ReceivedData != null)
+            {
+                return ReceivedData;
+            }
+
+            ReceivedData = TCpReceiveData_(stream_var);
+            string data = ReceivedData;
+            ReceivedData = null;
+            return data;
+        }
+
+        public string TCpReceiveData_(NetworkStream stream_var)
         {
             BinaryReader reader = new BinaryReader(stream_var);
 
             try
             {
                 string data = reader.ReadString();
-               return data;
+                //Utils.DebugClass.DebugIt("TCpReceiveData: data=", data);
+                return data;
             }
             catch (Exception ex)
             {

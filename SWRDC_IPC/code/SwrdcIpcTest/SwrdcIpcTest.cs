@@ -42,6 +42,7 @@ namespace GetacSwrdc.IpcTest
             {
                 string data = ipc_api.ApiTcpReceiveData(stream);
                 Utils.DebugClass.DebugIt("TestServer receive:", data);
+                Thread.Sleep(1000);
             }
         }
 
