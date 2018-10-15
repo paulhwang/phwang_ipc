@@ -46,7 +46,7 @@
     <Compile Include="code\SwdcIpc\SwrdcIpcApi.cs" />
     <Compile Include="code\SwdcIpc\SwrdcIpcCore.cs" />
     <Compile Include="code\SwrdcUtils\SwrdcUtils.cs" />
-    <Compile Include="code\Program.cs" />
+    <Compile Include="code\SwrdcIpcTest\SwrdcIpcTestMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

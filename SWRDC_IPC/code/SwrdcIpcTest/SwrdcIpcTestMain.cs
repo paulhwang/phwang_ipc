@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
-namespace GetacSwrdc
+namespace GetacIpcTestProgram
 {
-    class Program
+    class GetacIpcTestProgramClass
     {
         static void Main(string[] args)
         {
