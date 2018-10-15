@@ -10,7 +10,7 @@ namespace GetacSwrdc.IpcTest
 {
     class IpcTestClass
     {
-        private static void TestServer(object var)
+        public static void TestServer(object var)
         {
             int port = 9000;
             GetacSwrdc.IpcApi.IpcApiClass ipc_api = new GetacSwrdc.IpcApi.IpcApiClass { };
@@ -24,7 +24,7 @@ namespace GetacSwrdc.IpcTest
             ipc_api.ApiTcpReceiveData(stream);
         }
 
-        static void TestClient(object var)
+        public static void TestClient(object var)
         {
             string ip_addr = "127.0.0.1";
             int port = 9000;
