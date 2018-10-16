@@ -5,26 +5,26 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GetacSwrdc.IpcPath
+namespace Getac.Swrdc
 {
     class IpcPathClass
     {
         private int PATH_ARRAY_LENGTH = 100;
-        private GetacSwrdc.IpcBase.IpcBaseClass IpcBase_;
+        private IpcBaseClass IpcBase_;
         private IpcPathEntryClass[] PathEntryArray;
 
-        public IpcPathClass (GetacSwrdc.IpcBase.IpcBaseClass base_var)
+        public IpcPathClass (IpcBaseClass base_var)
         {
             this.IpcBase_ = base_var;
             this.PathEntryArray = new IpcPathEntryClass[this.PATH_ARRAY_LENGTH];
     }
 
-    public IpcBase.IpcBaseClass IpcBase()
+    public IpcBaseClass IpcBase()
         {
             return this.IpcBase_;
         }
 
-        public IpcTcp.IpcTcpClass IpcTcp()
+        public IpcTcpClass IpcTcp()
         {
             return this.IpcBase().IpcTcp();
         }

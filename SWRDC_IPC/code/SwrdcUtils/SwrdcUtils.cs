@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GetacSwrdc.Utils
+namespace Getac.Swrdc.Utils
 {
     class DebugClass
     {

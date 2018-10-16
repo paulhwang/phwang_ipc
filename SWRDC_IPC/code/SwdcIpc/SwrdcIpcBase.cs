@@ -4,32 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GetacSwrdc.IpcBase
+namespace Getac.Swrdc
 {
     class IpcBaseClass
     { 
-        private GetacSwrdc.IpcApi.IpcApiClass IpcApi_;
-        private GetacSwrdc.IpcPath.IpcPathClass IpcPath_;
-        private GetacSwrdc.IpcTcp.IpcTcpClass IpcTcp_;
+        private IpcApiClass IpcApi_;
+        private IpcPathClass IpcPath_;
+        private IpcTcpClass IpcTcp_;
 
         public IpcBaseClass ()
         {
-            this.IpcApi_ = new GetacSwrdc.IpcApi.IpcApiClass(this);
-            this.IpcTcp_ = new IpcTcp.IpcTcpClass(this);
-            this.IpcPath_ = new IpcPath.IpcPathClass(this);
+            this.IpcApi_ = new IpcApiClass(this);
+            this.IpcTcp_ = new IpcTcpClass(this);
+            this.IpcPath_ = new IpcPathClass(this);
         }
 
-        public GetacSwrdc.IpcApi.IpcApiClass IpcApi()
+        public IpcApiClass IpcApi()
         {
             return IpcApi_;
         }
 
-        public GetacSwrdc.IpcPath.IpcPathClass IpcPath()
+        public IpcPathClass IpcPath()
         {
             return IpcPath_;
         }
 
-        public GetacSwrdc.IpcTcp.IpcTcpClass IpcTcp()
+        public IpcTcpClass IpcTcp()
         {
             return IpcTcp_;
         }

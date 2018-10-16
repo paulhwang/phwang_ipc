@@ -6,23 +6,23 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GetacSwrdc.IpcTcp
+namespace Getac.Swrdc
 {
     class IpcTcpClass
     {
-        private GetacSwrdc.IpcBase.IpcBaseClass IpcBase_;
+        private IpcBaseClass IpcBase_;
 
-        public IpcTcpClass (GetacSwrdc.IpcBase.IpcBaseClass base_var)
+        public IpcTcpClass (IpcBaseClass base_var)
         {
             this.IpcBase_ = base_var;
         }
 
-        public IpcBase.IpcBaseClass IpcBase()
+        public IpcBaseClass IpcBase()
         {
             return this.IpcBase_;
         }
 
-        public IpcPath.IpcPathClass IpcPath()
+        public IpcPathClass IpcPath()
         {
             return this.IpcBase().IpcPath();
         }

@@ -6,17 +6,17 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GetacSwrdc.IpcTest
+namespace Getac.Swrdc
 {
     class IpcTestClass
     {
         public static void TestIpc ()
         {
-            Thread server_thread = new Thread(GetacSwrdc.IpcTest.IpcTestClass.TestServer);
+            Thread server_thread = new Thread(IpcTestClass.TestServer);
             server_thread.Start(5);
             Thread.Sleep(1000);
 
-            Thread client_thread = new Thread(GetacSwrdc.IpcTest.IpcTestClass.TestClient);
+            Thread client_thread = new Thread(IpcTestClass.TestClient);
             client_thread.Start(5);
 
             //while (true)
@@ -29,8 +29,8 @@ namespace GetacSwrdc.IpcTest
         public static void TestServer(object var)
         {
             int port = 9000;
-            GetacSwrdc.IpcBase.IpcBaseClass ipc = new GetacSwrdc.IpcBase.IpcBaseClass();
-            GetacSwrdc.IpcApi.IpcApiClass ipc_api = ipc.IpcApi();
+            IpcBaseClass ipc = new IpcBaseClass();
+            IpcApiClass ipc_api = ipc.IpcApi();
 
             int path_id = ipc_api.ApiTcpServer(port);
             if (path_id == -1)
@@ -52,8 +52,8 @@ namespace GetacSwrdc.IpcTest
             string ip_addr = "127.0.0.1";
             int port = 9000;
 
-            GetacSwrdc.IpcBase.IpcBaseClass ipc = new GetacSwrdc.IpcBase.IpcBaseClass();
-            GetacSwrdc.IpcApi.IpcApiClass ipc_api = ipc.IpcApi();
+            IpcBaseClass ipc = new IpcBaseClass();
+            IpcApiClass ipc_api = ipc.IpcApi();
 
             int path_id = ipc_api.ApiTcpClient(ip_addr, port);
             if (path_id == -1)
