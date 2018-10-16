@@ -10,8 +10,7 @@ namespace GetacSwrdc.IpcPath
     class IpcPathClass
     {
         private GetacSwrdc.IpcBase.IpcBaseClass IpcBase_;
-        private IpcTcp.IpcTcpClass ipc_core = new IpcTcp.IpcTcpClass { };
-        private IpcPathEntryClass path_entry1 = new IpcPathEntryClass { };
+         private IpcPathEntryClass path_entry1 = new IpcPathEntryClass { };
 
         public IpcPathClass (GetacSwrdc.IpcBase.IpcBaseClass base_var)
         {
@@ -23,10 +22,15 @@ namespace GetacSwrdc.IpcPath
             return this.IpcBase_;
         }
 
+        public IpcTcp.IpcTcpClass IpcTcp()
+        {
+            return this.IpcBase().IpcTcp();
+        }
+
         public void TransmitData (int path_id_var, string data_var)
         {
             IpcPathEntryClass path_entry = GetPath(path_id_var);
-            ipc_core.TcpTransmitData(path_entry.TcpStream, data_var);
+            this.IpcTcp().TcpTransmitData(path_entry.TcpStream, data_var);
         }
 
         public string ReceiveData (int path_id_var)
@@ -45,7 +49,7 @@ namespace GetacSwrdc.IpcPath
                 return null;
             }
 
-            string data = ipc_core.TcpReceiveData(stream);
+            string data = this.IpcTcp().TcpReceiveData(stream);
             return data;
         }
 
