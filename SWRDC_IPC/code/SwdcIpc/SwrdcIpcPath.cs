@@ -9,9 +9,8 @@ namespace GetacSwrdc.IpcPath
 {
     class IpcPathClass
     {
-        public  int PATH_ARRAY_LENGTH = 100;
+        private int PATH_ARRAY_LENGTH = 100;
         private GetacSwrdc.IpcBase.IpcBaseClass IpcBase_;
-        private IpcPathEntryClass path_entry1 = new IpcPathEntryClass { };
         private IpcPathEntryClass[] PathEntryArray;
 
         public IpcPathClass (GetacSwrdc.IpcBase.IpcBaseClass base_var)
@@ -58,15 +57,29 @@ namespace GetacSwrdc.IpcPath
 
         private IpcPathEntryClass GetPath (int path_id_var)
         {
-             return path_entry1;
+            if ((path_id_var < 0) || (this.PATH_ARRAY_LENGTH <= path_id_var))
+            {
+                return null;
+            }
+            return this.PathEntryArray[path_id_var];
         }
 
         public int AllocPath (NetworkStream stream_var)
         {
-            path_entry1.TcpStream = stream_var;
-            path_entry1.PathId = "100";
- 
-            return 1;
+            
+            IpcPathEntryClass path = new IpcPathEntryClass();
+            path.TcpStream = stream_var;
+
+            for (int i = 0; i < this.PATH_ARRAY_LENGTH; i++)
+            {
+                if (this.PathEntryArray[i] == null)
+                {
+                    this.PathEntryArray[i] = path;
+                    return i;
+                }
+            }
+
+            return -1;
         }
 
         public void freePath (int path_id_var)
