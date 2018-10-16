@@ -23,6 +23,7 @@ namespace GetacSwrdc.IpcTcp
             NetworkStream stream = client.GetStream();
             //Utils.DebugClass.DebugIt("TcpServer", "after GetStream");
 
+            int path_id = GetacSwrdc.IpcPath.IpcPathClass.AllocPath(stream);
              return stream;
         }
 
