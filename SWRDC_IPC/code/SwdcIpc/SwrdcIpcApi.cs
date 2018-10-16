@@ -37,16 +37,16 @@ namespace GetacSwrdc.IpcApi
              return path_id;
         }
 
-        public NetworkStream ApiTcpClient (string ip_addr_var, int port_var)
+        public int ApiTcpClient (string ip_addr_var, int port_var)
         {
-            NetworkStream stream = this.IpcTcp().TcpClient(ip_addr_var, port_var);
-            return stream;
+            int path_id = this.IpcTcp().TcpClient(ip_addr_var, port_var, this.IpcPath());
+            return path_id;
         }
 
-        public void ApiTcpTransmitData (NetworkStream stream_var, string data_var)
+        public void ApiTcpTransmitData (int path_id_var, string data_var)
         {
             //Utils.DebugClass.DebugIt("ApiTcpTransmitData", data_var);
-            this.IpcTcp().TcpTransmitData(stream_var, data_var);
+            this.IpcPath().TransmitData(path_id_var, data_var);
         }
 
         public string ApiTcpReceiveData (int path_id_var)

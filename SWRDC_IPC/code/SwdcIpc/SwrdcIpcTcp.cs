@@ -26,13 +26,15 @@ namespace GetacSwrdc.IpcTcp
             return path_id;
         }
 
-        public NetworkStream TcpClient(string ip_addr_var, int port_var)
+        public int TcpClient(string ip_addr_var, int port_var, GetacSwrdc.IpcPath.IpcPathClass path_var)
         {
             //Utils.DebugClass.DebugIt("TcpClient", "start");
             TcpClient client = new TcpClient(ip_addr_var, port_var);
             NetworkStream stream = client.GetStream();
             //Utils.DebugClass.DebugIt("TcpClient", "end");
-            return stream;
+
+            int path_id = path_var.AllocPath(stream);
+            return path_id;
         }
 
         public void TcpTransmitData(NetworkStream stream_var, string data_var)

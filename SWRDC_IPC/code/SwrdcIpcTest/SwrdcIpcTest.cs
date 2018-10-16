@@ -55,17 +55,17 @@ namespace GetacSwrdc.IpcTest
             GetacSwrdc.IpcBase.IpcBaseClass ipc = new GetacSwrdc.IpcBase.IpcBaseClass();
             GetacSwrdc.IpcApi.IpcApiClass ipc_api = ipc.IpcApi();
 
-            NetworkStream stream = ipc_api.ApiTcpClient(ip_addr, port);
-            if (stream == null)
+            int path_id = ipc_api.ApiTcpClient(ip_addr, port);
+            if (path_id == -1)
             {
-                Utils.DebugClass.DebugIt("TestClient", "***** null stream");
+                Utils.DebugClass.DebugIt("TestClient", "***** path_id == -1");
                 return;
             }
 
             Thread.Sleep(1000);
             for (int i = 0; i < 5; i++)
             {
-                ipc_api.ApiTcpTransmitData(stream, "hello from phwang");
+                ipc_api.ApiTcpTransmitData(path_id, "hello from phwang");
             }
         }
     }
