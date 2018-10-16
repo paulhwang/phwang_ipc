@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Getac.Swrdc.Ipc
+namespace Getac.Swrdc.Test
 {
     class IpcTestClass
     {
@@ -29,8 +29,8 @@ namespace Getac.Swrdc.Ipc
         public static void TestServer(object var)
         {
             int port = 9000;
-            IpcBaseClass ipc_base = new IpcBaseClass();
-            IpcApiClass ipc_api = ipc_base.IpcApi();
+            Getac.Swrdc.Ipc.IpcBaseClass ipc_base = new Getac.Swrdc.Ipc.IpcBaseClass();
+            Getac.Swrdc.Ipc.IpcApiClass ipc_api = ipc_base.IpcApi();
 
             int path_id = ipc_api.ApiTcpServer(port);
             if (path_id == -1)
@@ -51,8 +51,8 @@ namespace Getac.Swrdc.Ipc
             string ip_addr = "127.0.0.1";
             int port = 9000;
 
-            IpcBaseClass ipc_base = new IpcBaseClass();
-            IpcApiClass ipc_api = ipc_base.IpcApi();
+            Getac.Swrdc.Ipc.IpcBaseClass ipc_base = new Getac.Swrdc.Ipc.IpcBaseClass();
+            Getac.Swrdc.Ipc.IpcApiClass ipc_api = ipc_base.IpcApi();
 
             int path_id = ipc_api.ApiTcpClient(ip_addr, port);
             if (path_id == -1)
