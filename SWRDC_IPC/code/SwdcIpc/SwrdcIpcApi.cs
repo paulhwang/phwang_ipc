@@ -9,7 +9,7 @@ namespace GetacSwrdc.IpcApi
 {
     class IpcApiClass
     {
-         private GetacSwrdc.IpcBase.IpcBaseClass IpcBase_;
+        private GetacSwrdc.IpcBase.IpcBaseClass IpcBase_;
 
         public IpcApiClass (GetacSwrdc.IpcBase.IpcBaseClass base_var)
         {

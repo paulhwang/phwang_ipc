@@ -10,7 +10,7 @@ namespace GetacSwrdc.IpcPath
     class IpcPathClass
     {
         private GetacSwrdc.IpcBase.IpcBaseClass IpcBase_;
-         private IpcPathEntryClass path_entry1 = new IpcPathEntryClass { };
+        private IpcPathEntryClass path_entry1 = new IpcPathEntryClass { };
 
         public IpcPathClass (GetacSwrdc.IpcBase.IpcBaseClass base_var)
         {

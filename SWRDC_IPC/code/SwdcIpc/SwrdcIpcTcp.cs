@@ -10,6 +10,18 @@ namespace GetacSwrdc.IpcTcp
 {
     class IpcTcpClass
     {
+        private GetacSwrdc.IpcBase.IpcBaseClass IpcBase_;
+
+        public IpcTcpClass (GetacSwrdc.IpcBase.IpcBaseClass base_var)
+        {
+            this.IpcBase_ = base_var;
+        }
+
+        public IpcBase.IpcBaseClass IpcBase()
+        {
+            return this.IpcBase_;
+        }
+
         public int TcpServer(int port_var, GetacSwrdc.IpcPath.IpcPathClass path_var)
         {
              TcpListener listener = new TcpListener(System.Net.IPAddress.Parse("127.0.0.1"), port_var);
