@@ -30,7 +30,7 @@ namespace GetacSwrdc.IpcTest
         {
             int port = 9000;
             GetacSwrdc.IpcBase.IpcBaseClass ipc = new GetacSwrdc.IpcBase.IpcBaseClass { };
-            GetacSwrdc.IpcApi.IpcApiClass ipc_api = ipc.IpcApi;
+            GetacSwrdc.IpcApi.IpcApiClass ipc_api = ipc.IpcApi();
 
             int path_id = ipc_api.ApiTcpServer(port);
             if (path_id == -1)
@@ -53,7 +53,7 @@ namespace GetacSwrdc.IpcTest
             int port = 9000;
 
             GetacSwrdc.IpcBase.IpcBaseClass ipc = new GetacSwrdc.IpcBase.IpcBaseClass { };
-            GetacSwrdc.IpcApi.IpcApiClass ipc_api = ipc.IpcApi;
+            GetacSwrdc.IpcApi.IpcApiClass ipc_api = ipc.IpcApi();
 
             NetworkStream stream = ipc_api.ApiTcpClient(ip_addr, port);
             if (stream == null)

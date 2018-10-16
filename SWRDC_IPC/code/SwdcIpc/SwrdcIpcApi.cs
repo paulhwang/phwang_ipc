@@ -12,6 +12,13 @@ namespace GetacSwrdc.IpcApi
         private IpcTcp.IpcTcpClass ipc_core = new IpcTcp.IpcTcpClass { };
         private IpcPath.IpcPathClass ipc_path = new IpcPath.IpcPathClass { };
 
+        GetacSwrdc.IpcBase.IpcBaseClass Base;
+
+        public IpcApiClass (GetacSwrdc.IpcBase.IpcBaseClass base_var)
+        {
+            this.Base = base_var;
+        }
+
         public int ApiTcpServer(int port_var)
         {
              int path_id = ipc_core.TcpServer(port_var, ipc_path);

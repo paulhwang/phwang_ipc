@@ -8,14 +8,25 @@ namespace GetacSwrdc.IpcBase
 {
     class IpcBaseClass
     { 
-        public GetacSwrdc.IpcApi.IpcApiClass IpcApi;
-        public GetacSwrdc.IpcPath.IpcPathClass IpcPath;
-        public GetacSwrdc.IpcTcp.IpcTcpClass IpcTcp;
+        private GetacSwrdc.IpcApi.IpcApiClass IpcApi_;
+        private GetacSwrdc.IpcPath.IpcPathClass IpcPath_;
+        private GetacSwrdc.IpcTcp.IpcTcpClass IpcTcp_;
 
         public IpcBaseClass ()
         {
-            this.IpcApi = new GetacSwrdc.IpcApi.IpcApiClass { };
+            this.IpcApi_ = new GetacSwrdc.IpcApi.IpcApiClass(this);
+            this.IpcTcp_ = new IpcTcp.IpcTcpClass();
+            this.IpcPath_ = new IpcPath.IpcPathClass();
+        }
 
+        public GetacSwrdc.IpcApi.IpcApiClass IpcApi()
+        {
+            return IpcApi_;
+        }
+
+        public GetacSwrdc.IpcPath.IpcPathClass IpcPath()
+        {
+            return IpcPath_;
         }
     }
 }
