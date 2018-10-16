@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GetacSwrdc.IpcTcp
 {
-    class IpcCoreClass
+    class IpcTcpClass
     {
         public int TcpServer(int port_var, GetacSwrdc.IpcPath.IpcPathClass path_var)
         {

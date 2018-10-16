@@ -9,7 +9,7 @@ namespace GetacSwrdc.IpcPath
 {
     class IpcPathClass
     {
-        private IpcTcp.IpcCoreClass ipc_core = new IpcTcp.IpcCoreClass { };
+        private IpcTcp.IpcTcpClass ipc_core = new IpcTcp.IpcTcpClass { };
         private IpcPathEntryClass path_entry1 = new IpcPathEntryClass { };
 
         public void TransmitData (int path_id_var, string data_var)

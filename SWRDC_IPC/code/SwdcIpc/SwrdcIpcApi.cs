@@ -9,7 +9,7 @@ namespace GetacSwrdc.IpcApi
 {
     class IpcApiClass
     {
-        private IpcTcp.IpcCoreClass ipc_core = new IpcTcp.IpcCoreClass { };
+        private IpcTcp.IpcTcpClass ipc_core = new IpcTcp.IpcTcpClass { };
         private IpcPath.IpcPathClass ipc_path = new IpcPath.IpcPathClass { };
 
         public int ApiTcpServer(int port_var)
