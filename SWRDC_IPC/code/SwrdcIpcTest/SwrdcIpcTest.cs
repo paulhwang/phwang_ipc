@@ -29,21 +29,20 @@ namespace Getac.Swrdc
         public static void TestServer(object var)
         {
             int port = 9000;
-            IpcBaseClass ipc = new IpcBaseClass();
-            IpcApiClass ipc_api = ipc.IpcApi();
+            IpcBaseClass ipc_base = new IpcBaseClass();
+            IpcApiClass ipc_api = ipc_base.IpcApi();
 
             int path_id = ipc_api.ApiTcpServer(port);
             if (path_id == -1)
             {
                 return;
             }
-
  
             while (true)
             {
                 string data = ipc_api.ApiTcpReceiveData(path_id);
                 Utils.DebugClass.DebugIt("TestServer receive:", data);
-                Thread.Sleep(1000);
+                //Thread.Sleep(100);
             }
         }
 
@@ -52,8 +51,8 @@ namespace Getac.Swrdc
             string ip_addr = "127.0.0.1";
             int port = 9000;
 
-            IpcBaseClass ipc = new IpcBaseClass();
-            IpcApiClass ipc_api = ipc.IpcApi();
+            IpcBaseClass ipc_base = new IpcBaseClass();
+            IpcApiClass ipc_api = ipc_base.IpcApi();
 
             int path_id = ipc_api.ApiTcpClient(ip_addr, port);
             if (path_id == -1)
