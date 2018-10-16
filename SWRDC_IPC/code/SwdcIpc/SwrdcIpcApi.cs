@@ -33,13 +33,13 @@ namespace GetacSwrdc.IpcApi
 
         public int ApiTcpServer (int port_var)
         {
-             int path_id = this.IpcTcp().TcpServer(port_var, this.IpcPath());
+             int path_id = this.IpcTcp().TcpServer(port_var);
              return path_id;
         }
 
         public int ApiTcpClient (string ip_addr_var, int port_var)
         {
-            int path_id = this.IpcTcp().TcpClient(ip_addr_var, port_var, this.IpcPath());
+            int path_id = this.IpcTcp().TcpClient(ip_addr_var, port_var);
             return path_id;
         }
 

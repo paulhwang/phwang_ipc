@@ -22,7 +22,12 @@ namespace GetacSwrdc.IpcTcp
             return this.IpcBase_;
         }
 
-        public int TcpServer(int port_var, GetacSwrdc.IpcPath.IpcPathClass path_var)
+        public IpcPath.IpcPathClass IpcPath()
+        {
+            return this.IpcBase().IpcPath();
+        }
+
+        public int TcpServer(int port_var)
         {
              TcpListener listener = new TcpListener(System.Net.IPAddress.Parse("127.0.0.1"), port_var);
             listener.Start();
@@ -34,18 +39,18 @@ namespace GetacSwrdc.IpcTcp
             NetworkStream stream = client.GetStream();
             //Utils.DebugClass.DebugIt("TcpServer", "after GetStream");
 
-            int path_id = path_var.AllocPath(stream);
+            int path_id = this.IpcPath().AllocPath(stream);
             return path_id;
         }
 
-        public int TcpClient(string ip_addr_var, int port_var, GetacSwrdc.IpcPath.IpcPathClass path_var)
+        public int TcpClient(string ip_addr_var, int port_var)
         {
             //Utils.DebugClass.DebugIt("TcpClient", "start");
             TcpClient client = new TcpClient(ip_addr_var, port_var);
             NetworkStream stream = client.GetStream();
             //Utils.DebugClass.DebugIt("TcpClient", "end");
 
-            int path_id = path_var.AllocPath(stream);
+            int path_id = this.IpcPath().AllocPath(stream);
             return path_id;
         }
 
