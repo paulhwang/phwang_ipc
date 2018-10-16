@@ -82,9 +82,9 @@ namespace GetacSwrdc.IpcPath
             return -1;
         }
 
-        public void freePath (int path_id_var)
+        public void FreePath (int path_id_var)
         {
-
+            this.PathEntryArray[path_id_var] = null;
         }
     }
 
