@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Getac.Swrdc.Ipc
@@ -40,14 +41,14 @@ namespace Getac.Swrdc.Ipc
             IpcPathEntryClass path_entry = GetPath(path_id_var);
             if (path_entry == null)
             {
-                Utils.DebugClass.AbendIt("ReceiveData", "null path_entry");
+                Util.DebugClass.AbendIt("ReceiveData", "null path_entry");
                 return null;
             }
 
             NetworkStream stream = path_entry.TcpStream;
             if (stream == null)
             {
-                Utils.DebugClass.AbendIt("ReceiveData", "null stream");
+                Util.DebugClass.AbendIt("ReceiveData", "null stream");
                 return null;
             }
 
@@ -90,8 +91,20 @@ namespace Getac.Swrdc.Ipc
 
     class IpcPathEntryClass
     {
+        public Getac.Swrdc.Util.QueueClass ReceiveQueue;
+        private Thread ReceiveThread;
         public NetworkStream TcpStream;
-        public string PathId;
+
+        public IpcPathEntryClass ()
+        {
+            this.ReceiveQueue = new Getac.Swrdc.Util.QueueClass();
+            this.ReceiveThread = new Thread(ReceiveThreadFunc);
+        }
+
+        void ReceiveThreadFunc ()
+        {
+
+        }
     }
 
 }

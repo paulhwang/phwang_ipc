@@ -67,7 +67,7 @@ namespace Getac.Swrdc.Ipc
         {
             if (stream_var == null)
             {
-                Utils.DebugClass.AbendIt("TCpReceiveData", "null stream_var");
+                Util.DebugClass.AbendIt("TCpReceiveData", "null stream_var");
                 return null;
             }
 
@@ -94,7 +94,7 @@ namespace Getac.Swrdc.Ipc
             }
             catch (Exception ex)
             {
-                Utils.DebugClass.DebugIt("TCpReceiveData", "exception");
+                Util.DebugClass.DebugIt("TCpReceiveData", "exception");
                 return null;
             }
         }

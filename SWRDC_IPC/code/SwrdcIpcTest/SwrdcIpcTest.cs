@@ -41,7 +41,7 @@ namespace Getac.Swrdc.Test
             while (true)
             {
                 string data = ipc_api.ApiTcpReceiveData(path_id);
-                Utils.DebugClass.DebugIt("TestServer receive:", data);
+                Util.DebugClass.DebugIt("TestServer receive:", data);
                 //Thread.Sleep(100);
             }
         }
@@ -57,7 +57,7 @@ namespace Getac.Swrdc.Test
             int path_id = ipc_api.ApiTcpClient(ip_addr, port);
             if (path_id == -1)
             {
-                Utils.DebugClass.DebugIt("TestClient", "***** path_id == -1");
+                Util.DebugClass.DebugIt("TestClient", "***** path_id == -1");
                 return;
             }
 
