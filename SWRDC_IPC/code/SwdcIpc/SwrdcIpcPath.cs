@@ -9,15 +9,18 @@ namespace GetacSwrdc.IpcPath
 {
     class IpcPathClass
     {
+        public  int PATH_ARRAY_LENGTH = 100;
         private GetacSwrdc.IpcBase.IpcBaseClass IpcBase_;
         private IpcPathEntryClass path_entry1 = new IpcPathEntryClass { };
+        private IpcPathEntryClass[] PathEntryArray;
 
         public IpcPathClass (GetacSwrdc.IpcBase.IpcBaseClass base_var)
         {
             this.IpcBase_ = base_var;
-        }
+            this.PathEntryArray = new IpcPathEntryClass[this.PATH_ARRAY_LENGTH];
+    }
 
-        public IpcBase.IpcBaseClass IpcBase()
+    public IpcBase.IpcBaseClass IpcBase()
         {
             return this.IpcBase_;
         }
