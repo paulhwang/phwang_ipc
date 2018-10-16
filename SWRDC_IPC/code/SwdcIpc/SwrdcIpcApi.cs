@@ -9,37 +9,49 @@ namespace GetacSwrdc.IpcApi
 {
     class IpcApiClass
     {
-        private IpcTcp.IpcTcpClass ipc_core = new IpcTcp.IpcTcpClass { };
-        private IpcPath.IpcPathClass ipc_path = new IpcPath.IpcPathClass { };
-
-        GetacSwrdc.IpcBase.IpcBaseClass Base;
+         private GetacSwrdc.IpcBase.IpcBaseClass IpcBase_;
 
         public IpcApiClass (GetacSwrdc.IpcBase.IpcBaseClass base_var)
         {
-            this.Base = base_var;
+            this.IpcBase_ = base_var;
         }
 
-        public int ApiTcpServer(int port_var)
+        public IpcBase.IpcBaseClass IpcBase()
         {
-             int path_id = ipc_core.TcpServer(port_var, ipc_path);
+            return this.IpcBase_;
+        }
+
+        public IpcPath.IpcPathClass IpcPath ()
+        {
+            return this.IpcBase().IpcPath();
+        }
+
+        public IpcTcp.IpcTcpClass IpcTcp()
+        {
+            return this.IpcBase().IpcTcp();
+        }
+
+        public int ApiTcpServer (int port_var)
+        {
+             int path_id = this.IpcTcp().TcpServer(port_var, this.IpcPath());
              return path_id;
         }
 
-        public NetworkStream ApiTcpClient(string ip_addr_var, int port_var)
+        public NetworkStream ApiTcpClient (string ip_addr_var, int port_var)
         {
-            NetworkStream stream = ipc_core.TcpClient(ip_addr_var, port_var);
+            NetworkStream stream = this.IpcTcp().TcpClient(ip_addr_var, port_var);
             return stream;
         }
 
-        public void ApiTcpTransmitData(NetworkStream stream_var, string data_var)
+        public void ApiTcpTransmitData (NetworkStream stream_var, string data_var)
         {
             //Utils.DebugClass.DebugIt("ApiTcpTransmitData", data_var);
-            ipc_core.TcpTransmitData(stream_var, data_var);
+            this.IpcTcp().TcpTransmitData(stream_var, data_var);
         }
 
-        public string ApiTcpReceiveData(int path_id_var)
+        public string ApiTcpReceiveData (int path_id_var)
         {
-             string data = ipc_path.ReceiveData(path_id_var);
+             string data = this.IpcPath().ReceiveData(path_id_var);
             //Utils.DebugClass.DebugIt("ApiTcpReceiveData: data=", data);
             return data;
         }

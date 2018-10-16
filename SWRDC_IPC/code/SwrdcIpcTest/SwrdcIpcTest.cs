@@ -29,7 +29,7 @@ namespace GetacSwrdc.IpcTest
         public static void TestServer(object var)
         {
             int port = 9000;
-            GetacSwrdc.IpcBase.IpcBaseClass ipc = new GetacSwrdc.IpcBase.IpcBaseClass { };
+            GetacSwrdc.IpcBase.IpcBaseClass ipc = new GetacSwrdc.IpcBase.IpcBaseClass();
             GetacSwrdc.IpcApi.IpcApiClass ipc_api = ipc.IpcApi();
 
             int path_id = ipc_api.ApiTcpServer(port);
@@ -52,7 +52,7 @@ namespace GetacSwrdc.IpcTest
             string ip_addr = "127.0.0.1";
             int port = 9000;
 
-            GetacSwrdc.IpcBase.IpcBaseClass ipc = new GetacSwrdc.IpcBase.IpcBaseClass { };
+            GetacSwrdc.IpcBase.IpcBaseClass ipc = new GetacSwrdc.IpcBase.IpcBaseClass();
             GetacSwrdc.IpcApi.IpcApiClass ipc_api = ipc.IpcApi();
 
             NetworkStream stream = ipc_api.ApiTcpClient(ip_addr, port);
@@ -63,7 +63,7 @@ namespace GetacSwrdc.IpcTest
             }
 
             Thread.Sleep(1000);
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 5; i++)
             {
                 ipc_api.ApiTcpTransmitData(stream, "hello from phwang");
             }

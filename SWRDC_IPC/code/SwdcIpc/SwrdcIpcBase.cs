@@ -28,5 +28,10 @@ namespace GetacSwrdc.IpcBase
         {
             return IpcPath_;
         }
+
+        public GetacSwrdc.IpcTcp.IpcTcpClass IpcTcp()
+        {
+            return IpcTcp_;
+        }
     }
 }
