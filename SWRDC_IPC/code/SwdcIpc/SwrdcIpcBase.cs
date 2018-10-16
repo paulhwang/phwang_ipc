@@ -16,7 +16,7 @@ namespace GetacSwrdc.IpcBase
         {
             this.IpcApi_ = new GetacSwrdc.IpcApi.IpcApiClass(this);
             this.IpcTcp_ = new IpcTcp.IpcTcpClass();
-            this.IpcPath_ = new IpcPath.IpcPathClass();
+            this.IpcPath_ = new IpcPath.IpcPathClass(this);
         }
 
         public GetacSwrdc.IpcApi.IpcApiClass IpcApi()
