@@ -5,7 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Getac.Swrdc
+namespace Getac.Swrdc.Ipc
 {
     class IpcApiClass
     {

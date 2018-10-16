@@ -11,7 +11,7 @@ namespace GetacIpcTestProgram
     {
         static void Main(string[] args)
         {
-            Getac.Swrdc.IpcTestClass.TestIpc();
+            Getac.Swrdc.Ipc.IpcTestClass.TestIpc();
             Thread.Sleep(1000);
        }
     }
