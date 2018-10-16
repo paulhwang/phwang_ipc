@@ -31,8 +31,8 @@ namespace GetacSwrdc.IpcTest
             int port = 9000;
             GetacSwrdc.IpcApi.IpcApiClass ipc_api = new GetacSwrdc.IpcApi.IpcApiClass { };
 
-            NetworkStream stream = ipc_api.ApiTcpServer(port);
-            if (stream == null)
+            int path_id = ipc_api.ApiTcpServer(port);
+            if (path_id == -1)
             {
                 return;
             }
@@ -40,7 +40,7 @@ namespace GetacSwrdc.IpcTest
  
             while (true)
             {
-                string data = ipc_api.ApiTcpReceiveData(stream);
+                string data = ipc_api.ApiTcpReceiveData(path_id);
                 Utils.DebugClass.DebugIt("TestServer receive:", data);
                 Thread.Sleep(1000);
             }
@@ -62,7 +62,7 @@ namespace GetacSwrdc.IpcTest
             Thread.Sleep(1000);
             for (int i = 0; i < 10; i++)
             {
-                ipc_api.ApiTcpTransmitData(stream, "hellp from phwang");
+                ipc_api.ApiTcpTransmitData(stream, "hello from phwang");
             }
         }
     }

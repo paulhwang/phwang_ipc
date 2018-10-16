@@ -9,12 +9,13 @@ namespace GetacSwrdc.IpcApi
 {
     class IpcApiClass
     {
-        private IpcTcp.IpcCoreClass ipc_core = new IpcTcp.IpcCoreClass();
+        private IpcTcp.IpcCoreClass ipc_core = new IpcTcp.IpcCoreClass { };
+        private IpcPath.IpcPathClass ipc_path = new IpcPath.IpcPathClass { };
 
-        public NetworkStream ApiTcpServer(int port_var)
+        public int ApiTcpServer(int port_var)
         {
-             NetworkStream stream = ipc_core.TcpServer(port_var);
-             return stream;
+             int path_id = ipc_core.TcpServer(port_var, ipc_path);
+             return path_id;
         }
 
         public NetworkStream ApiTcpClient(string ip_addr_var, int port_var)
@@ -29,10 +30,10 @@ namespace GetacSwrdc.IpcApi
             ipc_core.TcpTransmitData(stream_var, data_var);
         }
 
-        public string ApiTcpReceiveData(NetworkStream stream_var)
+        public string ApiTcpReceiveData(int path_id_var)
         {
-            string data = ipc_core.TCpReceiveData(stream_var);
-            //Utils.DebugClass.DebugIt("ApiTcpReceiveData", data_var);
+             string data = ipc_path.ReceiveData(path_id_var);
+            //Utils.DebugClass.DebugIt("ApiTcpReceiveData: data=", data);
             return data;
         }
     }

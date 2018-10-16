@@ -9,8 +9,8 @@ namespace GetacSwrdc.IpcPath
 {
     class IpcPathClass
     {
-        private IpcTcp.IpcCoreClass ipc_core = new IpcTcp.IpcCoreClass();
-        private IpcPathEntryClass path1;
+        private IpcTcp.IpcCoreClass ipc_core = new IpcTcp.IpcCoreClass { };
+        private IpcPathEntryClass path_entry1 = new IpcPathEntryClass { };
 
         public void TransmitData (int path_id_var, string data_var)
         {
@@ -21,18 +21,33 @@ namespace GetacSwrdc.IpcPath
         public string ReceiveData (int path_id_var)
         {
             IpcPathEntryClass path_entry = GetPath(path_id_var);
-            string data = ipc_core.TCpReceiveData(path_entry.TcpStream);
-            return null;
+            if (path_entry == null)
+            {
+                Utils.DebugClass.AbendIt("ReceiveData", "null path_entry");
+                return null;
+            }
+
+            NetworkStream stream = path_entry.TcpStream;
+            if (stream == null)
+            {
+                Utils.DebugClass.AbendIt("ReceiveData", "null stream");
+                return null;
+            }
+
+            string data = ipc_core.TcpReceiveData(stream);
+            return data;
         }
 
         private IpcPathEntryClass GetPath (int path_id_var)
         {
-            return path1;
+             return path_entry1;
         }
 
-        public static int AllocPath (NetworkStream stream_var)
+        public int AllocPath (NetworkStream stream_var)
         {
-            
+            path_entry1.TcpStream = stream_var;
+            path_entry1.PathId = "100";
+ 
             return 1;
         }
 
@@ -45,6 +60,7 @@ namespace GetacSwrdc.IpcPath
     class IpcPathEntryClass
     {
         public NetworkStream TcpStream;
+        public string PathId;
     }
 
 }

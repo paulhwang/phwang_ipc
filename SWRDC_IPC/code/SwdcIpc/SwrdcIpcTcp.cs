@@ -10,10 +10,9 @@ namespace GetacSwrdc.IpcTcp
 {
     class IpcCoreClass
     {
-        public NetworkStream TcpServer(int port_var)
+        public int TcpServer(int port_var, GetacSwrdc.IpcPath.IpcPathClass path_var)
         {
- 
-            TcpListener listener = new TcpListener(System.Net.IPAddress.Parse("127.0.0.1"), port_var);
+             TcpListener listener = new TcpListener(System.Net.IPAddress.Parse("127.0.0.1"), port_var);
             listener.Start();
             //Utils.DebugClass.DebugIt("TcpServer", "after listener.Start()");
 
@@ -23,8 +22,8 @@ namespace GetacSwrdc.IpcTcp
             NetworkStream stream = client.GetStream();
             //Utils.DebugClass.DebugIt("TcpServer", "after GetStream");
 
-            int path_id = GetacSwrdc.IpcPath.IpcPathClass.AllocPath(stream);
-             return stream;
+            int path_id = path_var.AllocPath(stream);
+            return path_id;
         }
 
         public NetworkStream TcpClient(string ip_addr_var, int port_var)
@@ -45,26 +44,32 @@ namespace GetacSwrdc.IpcTcp
 
         string ReceivedData = null;
 
-        public string TCpReceiveData(NetworkStream stream_var)
+        public string TcpReceiveData(NetworkStream stream_var)
         {
+            if (stream_var == null)
+            {
+                Utils.DebugClass.AbendIt("TCpReceiveData", "null stream_var");
+                return null;
+            }
+
             if (ReceivedData != null)
             {
                 return ReceivedData;
             }
 
-            ReceivedData = TCpReceiveData_(stream_var);
+            ReceivedData = TcpReceiveData_(stream_var);
             string data = ReceivedData;
             ReceivedData = null;
             return data;
         }
 
-        public string TCpReceiveData_(NetworkStream stream_var)
+        public string TcpReceiveData_(NetworkStream stream_var)
         {
             BinaryReader reader = new BinaryReader(stream_var);
-
+ 
             try
             {
-                string data = reader.ReadString();
+                 string data = reader.ReadString();
                 //Utils.DebugClass.DebugIt("TCpReceiveData: data=", data);
                 return data;
             }

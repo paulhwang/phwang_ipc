@@ -20,7 +20,9 @@ namespace GetacSwrdc.Utils
 
         public static void AbendIt(string var1, string var2)
         {
-
+            System.Diagnostics.Debug.WriteLine("***", "ABEND");
+            System.Diagnostics.Debug.WriteLine(var2, var1);
+            System.Diagnostics.Debug.WriteLine("***", "ABEND");
         }
     }
 }
