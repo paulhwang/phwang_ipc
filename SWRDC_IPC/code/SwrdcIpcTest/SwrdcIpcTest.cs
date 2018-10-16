@@ -14,7 +14,7 @@ namespace GetacSwrdc.IpcTest
         {
             Thread server_thread = new Thread(GetacSwrdc.IpcTest.IpcTestClass.TestServer);
             server_thread.Start(5);
-            Thread.Sleep(3000);
+            Thread.Sleep(1000);
 
             Thread client_thread = new Thread(GetacSwrdc.IpcTest.IpcTestClass.TestClient);
             client_thread.Start(5);
@@ -59,7 +59,7 @@ namespace GetacSwrdc.IpcTest
                 return;
             }
 
-            Thread.Sleep(3000);
+            Thread.Sleep(1000);
             for (int i = 0; i < 10; i++)
             {
                 ipc_api.ApiTcpTransmitData(stream, "hellp from phwang");

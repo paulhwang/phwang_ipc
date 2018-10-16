@@ -42,9 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="code\SwdcIpc\SwrdcIpcPath.cs" />
     <Compile Include="code\SwrdcIpcTest\SwrdcIpcTest.cs" />
     <Compile Include="code\SwdcIpc\SwrdcIpcApi.cs" />
-    <Compile Include="code\SwdcIpc\SwrdcIpcCore.cs" />
+    <Compile Include="code\SwdcIpc\SwrdcIpcTcp.cs" />
     <Compile Include="code\SwrdcUtils\SwrdcUtils.cs" />
     <Compile Include="code\SwrdcIpcTest\SwrdcIpcTestMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
