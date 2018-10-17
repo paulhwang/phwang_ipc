@@ -6,7 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Getac.Csc.Util.Ipc
+namespace Getac.Csc.Utilities.Ipc
 {
     class IpcTcpClass
     {
@@ -67,7 +67,7 @@ namespace Getac.Csc.Util.Ipc
         {
             if (stream_var == null)
             {
-                Util.DebugClass.AbendIt("TCpReceiveData", "null stream_var");
+                Utilities.DebugClass.AbendIt("TCpReceiveData", "null stream_var");
                 return null;
             }
 
@@ -94,7 +94,7 @@ namespace Getac.Csc.Util.Ipc
             }
             catch (Exception ex)
             {
-                Util.DebugClass.DebugIt("TCpReceiveData", "exception");
+                Utilities.DebugClass.DebugIt("TCpReceiveData", "exception");
                 return null;
             }
         }

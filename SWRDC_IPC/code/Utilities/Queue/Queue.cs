@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Getac.Csc.Util
+namespace Getac.Csc.Utilities
 {
     class QueueClass
     {

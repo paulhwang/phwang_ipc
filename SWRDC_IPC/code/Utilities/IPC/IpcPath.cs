@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Getac.Csc.Util.Ipc
+namespace Getac.Csc.Utilities.Ipc
 {
     class IpcPathClass
     {
@@ -41,14 +41,14 @@ namespace Getac.Csc.Util.Ipc
             IpcPathEntryClass path_entry = GetPath(path_id_var);
             if (path_entry == null)
             {
-                Util.DebugClass.AbendIt("ReceiveData", "null path_entry");
+                Utilities.DebugClass.AbendIt("ReceiveData", "null path_entry");
                 return null;
             }
 
             NetworkStream stream = path_entry.TcpStream;
             if (stream == null)
             {
-                Util.DebugClass.AbendIt("ReceiveData", "null stream");
+                Utilities.DebugClass.AbendIt("ReceiveData", "null stream");
                 return null;
             }
 
@@ -91,13 +91,13 @@ namespace Getac.Csc.Util.Ipc
 
     class IpcPathEntryClass
     {
-        public Getac.Csc.Util.QueueClass ReceiveQueue;
+        public Getac.Csc.Utilities.QueueClass ReceiveQueue;
         private Thread ReceiveThread;
         public NetworkStream TcpStream;
 
         public IpcPathEntryClass ()
         {
-            this.ReceiveQueue = new Getac.Csc.Util.QueueClass();
+            this.ReceiveQueue = new Getac.Csc.Utilities.QueueClass();
             this.ReceiveThread = new Thread(ReceiveThreadFunc);
         }
 

@@ -29,8 +29,8 @@ namespace Getac.Csc.Util.Ipc
         public static void TestServer(object var)
         {
             int port = 9000;
-            Getac.Csc.Util.Ipc.IpcBaseClass ipc_base = new Getac.Csc.Util.Ipc.IpcBaseClass();
-            Getac.Csc.Util.Ipc.IpcApiClass ipc_api = ipc_base.IpcApi();
+            Getac.Csc.Utilities.Ipc.IpcBaseClass ipc_base = new Getac.Csc.Utilities.Ipc.IpcBaseClass();
+            Getac.Csc.Utilities.Ipc.IpcApiClass ipc_api = ipc_base.IpcApi();
 
             int path_id = ipc_api.ApiTcpServer(port);
             if (path_id == -1)
@@ -41,7 +41,7 @@ namespace Getac.Csc.Util.Ipc
             while (true)
             {
                 string data = ipc_api.ApiTcpReceiveData(path_id);
-                Util.DebugClass.DebugIt("TestServer receive:", data);
+                Utilities.DebugClass.DebugIt("TestServer receive:", data);
                 //Thread.Sleep(100);
             }
         }
@@ -51,13 +51,13 @@ namespace Getac.Csc.Util.Ipc
             string ip_addr = "127.0.0.1";
             int port = 9000;
 
-            Getac.Csc.Util.Ipc.IpcBaseClass ipc_base = new Getac.Csc.Util.Ipc.IpcBaseClass();
-            Getac.Csc.Util.Ipc.IpcApiClass ipc_api = ipc_base.IpcApi();
+            Getac.Csc.Utilities.Ipc.IpcBaseClass ipc_base = new Getac.Csc.Utilities.Ipc.IpcBaseClass();
+            Getac.Csc.Utilities.Ipc.IpcApiClass ipc_api = ipc_base.IpcApi();
 
             int path_id = ipc_api.ApiTcpClient(ip_addr, port);
             if (path_id == -1)
             {
-                Util.DebugClass.DebugIt("TestClient", "***** path_id == -1");
+                Utilities.DebugClass.DebugIt("TestClient", "***** path_id == -1");
                 return;
             }
 

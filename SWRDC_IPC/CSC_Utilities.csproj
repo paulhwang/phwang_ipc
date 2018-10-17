@@ -42,13 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="code\Util\IPC\IpcBase.cs" />
-    <Compile Include="code\Util\IPC\IpcPath.cs" />
-    <Compile Include="code\Util\IPC\IpcTest.cs" />
-    <Compile Include="code\Util\IPC\IpcApi.cs" />
-    <Compile Include="code\Util\IPC\IpcTcp.cs" />
-    <Compile Include="code\Util\Queue\Queue.cs" />
-    <Compile Include="code\Util\Debug\Debug.cs" />
+    <Compile Include="code\Utilities\IPC\IpcBase.cs" />
+    <Compile Include="code\Utilities\IPC\IpcPath.cs" />
+    <Compile Include="code\Utilities\IPC\IpcTest.cs" />
+    <Compile Include="code\Utilities\IPC\IpcApi.cs" />
+    <Compile Include="code\Utilities\IPC\IpcTcp.cs" />
+    <Compile Include="code\Utilities\Queue\Queue.cs" />
+    <Compile Include="code\Utilities\Debug\Debug.cs" />
     <Compile Include="code\Test\IpcTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
