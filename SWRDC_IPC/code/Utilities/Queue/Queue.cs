@@ -2,18 +2,45 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace Getac.Csc.Utilities
 {
     class QueueClass
     {
+        private const int QUEUE_CLASS_DEFAULT_MAX_QUEUE_SIZE = 1000;
         private int QueueLength;
         private QueueEntryClass QueueHead;
         private QueueEntryClass QueueTail;
         private int MaxQueueLength;
+        private object Lock;
 
-        public void enqueueData (object data_val)
+        public QueueClass(bool do_suspend_val, int max_length_val)
+        {
+            this.MaxQueueLength = max_length_val;
+            this.Lock = new object();
+
+
+            if (do_suspend_val = true) {
+                //this.SuspendObject = new SuspendClass();
+            }
+            else {
+                //this.SuspendObject = nuill;
+            }
+
+            if (this.MaxQueueLength == 0) {
+                this.MaxQueueLength = QUEUE_CLASS_DEFAULT_MAX_QUEUE_SIZE;
+            }
+
+            //this.TheMutex = new Mutex(true, "queue by phwang");
+            //if (pthread_mutex_init(&this->theMutex, NULL) != 0) {
+                //this->abend("QueueClass", "pthread_mutex_init fail");
+            //}
+    }
+
+
+
+    public void enqueueData (object data_val)
         {
             //this->debug(false, "enqueueData", (char*)data_val);
 
@@ -34,9 +61,11 @@ namespace Getac.Csc.Utilities
             entry.data = data_val;
 
             this.AbendQueue("enqueueData begin");
-            //pthread_mutex_lock(&this->theMutex);
-            this.EnqueueEntry(entry);
-            //pthread_mutex_unlock(&this->theMutex);
+            lock (this.Lock)
+            {
+                this.EnqueueEntry(entry);
+            }
+
             this.AbendQueue("enqueueData end");
 
             //if (this->theSuspendObject)
@@ -48,6 +77,8 @@ namespace Getac.Csc.Utilities
 
         public object dequeueData ()
         {
+            QueueEntryClass entry;
+
             while (true)
             {
                 if (this.QueueHead == null)
@@ -61,10 +92,11 @@ namespace Getac.Csc.Utilities
                 else
                 {
                     this.AbendQueue("dequeueData begin");
-                    //pthread_mutex_lock(&this->theMutex);
-                    QueueEntryClass entry = this.DequeueEntry();
-                    //pthread_mutex_unlock(&this->theMutex);
-                    this.AbendQueue("dequeueData end");
+                    lock (this.Lock)
+                    {
+                        entry = this.DequeueEntry();
+                    }
+                   this.AbendQueue("dequeueData end");
 
                     if (entry != null)
                     {
@@ -163,36 +195,36 @@ namespace Getac.Csc.Utilities
                 }
             }
 
-            //pthread_mutex_lock(&this->theMutex);
-            length = 0;
-            entry = this.QueueHead;
-            while (entry != null)
+            lock (this.Lock)
             {
-                length++;
-                entry = entry.next;
-            }
+                length = 0;
+                entry = this.QueueHead;
+                while (entry != null)
+                {
+                    length++;
+                    entry = entry.next;
+                }
 
-            if (length != this.QueueLength)
-            {
-                //printf("%s length=%d %d\n", msg_val, length, this->theQueueSize);
-                //this->abend("abendQueue", "from head: bad length");
-            }
+                if (length != this.QueueLength)
+                {
+                    //printf("%s length=%d %d\n", msg_val, length, this->theQueueSize);
+                    //this->abend("abendQueue", "from head: bad length");
+                }
 
-            length = 0;
-            entry = this.QueueTail;
-            while (entry != null)
-            {
-                length++;
-                entry = entry.prev;
-            }
+                length = 0;
+                entry = this.QueueTail;
+                while (entry != null)
+                {
+                    length++;
+                    entry = entry.prev;
+                }
 
-            if (length != this.QueueLength)
-            {
-                //printf("%s length=%d %d\n", msg_val, length, this->theQueueSize);
-                //this->abend("abendQueue", "from tail: bad length");
+                if (length != this.QueueLength)
+                {
+                    //printf("%s length=%d %d\n", msg_val, length, this->theQueueSize);
+                    //this->abend("abendQueue", "from tail: bad length");
+                }
             }
-
-            //pthread_mutex_unlock(&this->theMutex);
         }
 
         private void FlushQueue ()

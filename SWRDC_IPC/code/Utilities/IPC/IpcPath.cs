@@ -101,7 +101,7 @@ namespace Getac.Csc.Utilities.Ipc
 
         public IpcPathEntryClass ()
         {
-            this.ReceiveQueue = new Getac.Csc.Utilities.QueueClass();
+            this.ReceiveQueue = new Getac.Csc.Utilities.QueueClass(true, 1000);
             this.ReceiveThread = new Thread(ReceiveThreadFunc);
         }
 
