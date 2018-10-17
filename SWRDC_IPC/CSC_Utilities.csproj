@@ -49,7 +49,7 @@
     <Compile Include="code\Utilities\IPC\IpcTcp.cs" />
     <Compile Include="code\Utilities\Queue\Queue.cs" />
     <Compile Include="code\Utilities\DebugTools\Abend.cs" />
-    <Compile Include="code\Test\IpcTest.cs" />
+    <Compile Include="code\Test\IpcTestPrpgram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -9,9 +9,9 @@ namespace Getac.Csc.Utilities.Test
 {
     class GetacIpcTestProgramClass
     {
-        static void Main(string[] args)
+        static void Main (string[] args)
         {
-            Getac.Csc.Util.Ipc.IpcTestClass.TestIpc();
+            Getac.Csc.Util.Ipc.IpcTestClass.TestIpc("127.0.0.1", 9000);
             Thread.Sleep(1000);
        }
     }

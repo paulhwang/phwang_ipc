@@ -21,10 +21,8 @@ namespace Getac.Csc.Util.Ipc
     }
     class IpcTestClass
     {
-        public static void TestIpc ()
+        public static void TestIpc (string ip_addr_var, int port_var)
         {
-            //IpAddrPort ip_addr_port = new IpAddrPort();
-
             Thread server_thread = new Thread(IpcTestClass.RunAsServer);
             server_thread.Start(new IpAddrPort("127.0.0.1", 9000));
             Thread.Sleep(1000);
