@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Getac.Swrdc.Ipc
+namespace Getac.Csc.Util.Ipc
 {
     class IpcPathClass
     {
@@ -91,13 +91,13 @@ namespace Getac.Swrdc.Ipc
 
     class IpcPathEntryClass
     {
-        public Getac.Swrdc.Util.QueueClass ReceiveQueue;
+        public Getac.Csc.Util.QueueClass ReceiveQueue;
         private Thread ReceiveThread;
         public NetworkStream TcpStream;
 
         public IpcPathEntryClass ()
         {
-            this.ReceiveQueue = new Getac.Swrdc.Util.QueueClass();
+            this.ReceiveQueue = new Getac.Csc.Util.QueueClass();
             this.ReceiveThread = new Thread(ReceiveThreadFunc);
         }
 

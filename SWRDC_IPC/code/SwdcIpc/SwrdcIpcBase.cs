@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Getac.Swrdc.Ipc
+namespace Getac.Csc.Util.Ipc
 {
     class IpcBaseClass
     { 
