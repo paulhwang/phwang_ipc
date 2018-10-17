@@ -42,11 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="code\SwdcIpc\SwrdcIpcBase.cs" />
-    <Compile Include="code\SwdcIpc\SwrdcIpcPath.cs" />
+    <Compile Include="code\Util\IPC\IpcBase.cs" />
+    <Compile Include="code\Util\IPC\IpcPath.cs" />
     <Compile Include="code\SwrdcIpcTest\SwrdcIpcTest.cs" />
-    <Compile Include="code\SwdcIpc\SwrdcIpcApi.cs" />
-    <Compile Include="code\SwdcIpc\SwrdcIpcTcp.cs" />
+    <Compile Include="code\Util\IPC\IpcApi.cs" />
+    <Compile Include="code\Util\IPC\IpcTcp.cs" />
     <Compile Include="code\SwrdcUtils\SwrdcUtilQueue.cs" />
     <Compile Include="code\SwrdcUtils\SwrdcUtilDebug.cs" />
     <Compile Include="code\SwrdcIpcTest\SwrdcIpcTestMain.cs" />
