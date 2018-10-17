@@ -8,16 +8,29 @@ using System.Threading.Tasks;
 
 namespace Getac.Csc.Util.Ipc
 {
+    class IpAddrPort
+    {
+        public string IpAddr;
+        public int Port;
+
+        public IpAddrPort(string ip_addr_var, int port_var)
+        {
+            this.IpAddr = ip_addr_var;
+            this.Port = port_var;
+        }
+    }
     class IpcTestClass
     {
         public static void TestIpc ()
         {
+            //IpAddrPort ip_addr_port = new IpAddrPort();
+
             Thread server_thread = new Thread(IpcTestClass.TestServer);
-            server_thread.Start(5);
+            server_thread.Start(new IpAddrPort("127.0.0.1", 9000));
             Thread.Sleep(1000);
 
             Thread client_thread = new Thread(IpcTestClass.TestClient);
-            client_thread.Start(5);
+            client_thread.Start(new IpAddrPort("127.0.0.1", 9000));
 
             //while (true)
             {
@@ -26,15 +39,14 @@ namespace Getac.Csc.Util.Ipc
             }
         }
 
-        public static void TestServer(object var)
+        public static void TestServer (object ip_addr_port_var)
         {
-            string ip_addr = "127.0.0.1";
-            int port = 9000;
+            IpAddrPort ip_addr_port = (IpAddrPort)ip_addr_port_var;
 
             Getac.Csc.Utilities.Ipc.IpcBaseClass ipc_base = new Getac.Csc.Utilities.Ipc.IpcBaseClass();
             Getac.Csc.Utilities.Ipc.IpcApiClass ipc_api = ipc_base.IpcApi();
 
-            int path_id = ipc_api.ApiTcpServer(ip_addr, port);
+            int path_id = ipc_api.ApiTcpServer(ip_addr_port.IpAddr, ip_addr_port.Port);
             if (path_id == -1)
             {
                 return;
@@ -48,15 +60,14 @@ namespace Getac.Csc.Util.Ipc
             }
         }
 
-        public static void TestClient(object var)
+        public static void TestClient (object ip_addr_port_var)
         {
-            string ip_addr = "127.0.0.1";
-            int port = 9000;
+            IpAddrPort ip_addr_port = (IpAddrPort)ip_addr_port_var;
 
             Getac.Csc.Utilities.Ipc.IpcBaseClass ipc_base = new Getac.Csc.Utilities.Ipc.IpcBaseClass();
             Getac.Csc.Utilities.Ipc.IpcApiClass ipc_api = ipc_base.IpcApi();
 
-            int path_id = ipc_api.ApiTcpClient(ip_addr, port);
+            int path_id = ipc_api.ApiTcpClient(ip_addr_port.IpAddr, ip_addr_port.Port);
             if (path_id == -1)
             {
                 Utilities.DebugClass.DebugIt("TestClient", "***** path_id == -1");
