@@ -31,9 +31,9 @@ namespace Getac.Csc.Utilities.Ipc
             return this.IpcBase().IpcTcp();
         }
 
-        public int ApiTcpServer (int port_var)
+        public int ApiTcpServer (string ip_addr_var, int port_var)
         {
-             int path_id = this.IpcTcp().TcpServer(port_var);
+             int path_id = this.IpcTcp().TcpServer(ip_addr_var, port_var);
              return path_id;
         }
 

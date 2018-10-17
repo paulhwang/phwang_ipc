@@ -28,11 +28,13 @@ namespace Getac.Csc.Util.Ipc
 
         public static void TestServer(object var)
         {
+            string ip_addr = "127.0.0.1";
             int port = 9000;
+
             Getac.Csc.Utilities.Ipc.IpcBaseClass ipc_base = new Getac.Csc.Utilities.Ipc.IpcBaseClass();
             Getac.Csc.Utilities.Ipc.IpcApiClass ipc_api = ipc_base.IpcApi();
 
-            int path_id = ipc_api.ApiTcpServer(port);
+            int path_id = ipc_api.ApiTcpServer(ip_addr, port);
             if (path_id == -1)
             {
                 return;

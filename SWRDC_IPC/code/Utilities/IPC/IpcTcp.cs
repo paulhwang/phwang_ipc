@@ -27,9 +27,9 @@ namespace Getac.Csc.Utilities.Ipc
             return this.IpcBase().IpcPath();
         }
 
-        public int TcpServer(int port_var)
+        public int TcpServer(string ip_addr_var, int port_var)
         {
-             TcpListener listener = new TcpListener(System.Net.IPAddress.Parse("127.0.0.1"), port_var);
+             TcpListener listener = new TcpListener(System.Net.IPAddress.Parse(ip_addr_var), port_var);
             listener.Start();
             //Utils.DebugClass.DebugIt("TcpServer", "after listener.Start()");
 
