@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Getac.Csc.Util.Test
+namespace Getac.Csc.Util.Ipc
 {
     class IpcTestClass
     {
