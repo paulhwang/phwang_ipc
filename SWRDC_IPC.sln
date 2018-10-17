@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SWRDC_IPC", "SWRDC_IPC\SWRDC_IPC.csproj", "{F005FBB1-06E5-47D7-AC88-4B32C6272DEE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSC_Utilities", "SWRDC_IPC\CSC_Utilities.csproj", "{F005FBB1-06E5-47D7-AC88-4B32C6272DEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
