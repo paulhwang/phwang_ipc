@@ -13,18 +13,38 @@ namespace Getac.Csc.Utilities
         private QueueEntryClass theQueueTail;
         private int MaxQueueSize_;
 
-        int QueueLength ()
+        public void enqueueData (object data_val)
+        {
+
+        }
+
+        public void dequeueData ()
+        {
+
+        }
+
+        public int QueueLength()
         {
             return this.QueueLength_;
         }
-        void EnqueueEntry (QueueEntryClass entry)
+
+        private void EnqueueEntry(QueueEntryClass entry)
         {
 
         }
 
-        QueueEntryClass DequeueEntry ()
+        private QueueEntryClass DequeueEntry()
         {
             return null;
+        }
+
+        private void AbendQueue (string msg_val)
+        {
+        }
+
+        private void FlushQueue ()
+        {
+
         }
     }
     class QueueEntryClass
@@ -34,18 +54,7 @@ namespace Getac.Csc.Utilities
 }
 
 /*
-pthread_mutex_t theMutex;
 
-void enqueueEntry(QueueEntryClass* entry);
-QueueEntryClass* dequeueEntry(void);
-int queueSize(void) { return this->theQueueSize; }
-
-void abendQueue(char const *msg_val);
-void flushQueue(void);
-
-void debug(int on_off_val, char const *str0_val, char const *str1_val) { if (on_off_val) this->logit(str0_val, str1_val); };
-void logit(char const *str0_val, char const *str1_val);
-void abend(char const *str0_val, char const *str1_val);
 
 public:
     QueueClass(int do_suspend_val, int max_size_val);
