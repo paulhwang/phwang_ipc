@@ -85,6 +85,10 @@ namespace Getac.Csc.Utilities.Ipc
 
         public void FreePath (int path_id_var)
         {
+            if ((path_id_var < 0) || (this.PATH_ARRAY_LENGTH <= path_id_var))
+            {
+                return;
+            }
             this.PathEntryArray[path_id_var] = null;
         }
     }
