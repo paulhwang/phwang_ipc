@@ -8,5 +8,6 @@ namespace Getac.Csc.Util
 {
     class QueueClass
     {
+
     }
 }
