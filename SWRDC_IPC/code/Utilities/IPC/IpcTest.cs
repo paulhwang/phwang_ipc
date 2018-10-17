@@ -25,11 +25,11 @@ namespace Getac.Csc.Util.Ipc
         {
             //IpAddrPort ip_addr_port = new IpAddrPort();
 
-            Thread server_thread = new Thread(IpcTestClass.TestServer);
+            Thread server_thread = new Thread(IpcTestClass.RunAsServer);
             server_thread.Start(new IpAddrPort("127.0.0.1", 9000));
             Thread.Sleep(1000);
 
-            Thread client_thread = new Thread(IpcTestClass.TestClient);
+            Thread client_thread = new Thread(IpcTestClass.RunAsClient);
             client_thread.Start(new IpAddrPort("127.0.0.1", 9000));
 
             //while (true)
@@ -39,7 +39,7 @@ namespace Getac.Csc.Util.Ipc
             }
         }
 
-        public static void TestServer (object ip_addr_port_var)
+        public static void RunAsServer(object ip_addr_port_var)
         {
             IpAddrPort ip_addr_port = (IpAddrPort)ip_addr_port_var;
 
@@ -60,7 +60,7 @@ namespace Getac.Csc.Util.Ipc
             }
         }
 
-        public static void TestClient (object ip_addr_port_var)
+        public static void RunAsClient(object ip_addr_port_var)
         {
             IpAddrPort ip_addr_port = (IpAddrPort)ip_addr_port_var;
 
