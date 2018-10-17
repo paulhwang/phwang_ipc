@@ -21,14 +21,11 @@ namespace Getac.Csc.Util.Ipc
     }
     class IpcTestClass
     {
-        public static void TestIpc (string ip_addr_var, int port_var)
+        public static void TestServer (string ip_addr_var, int port_var)
         {
             Thread server_thread = new Thread(IpcTestClass.RunAsServer);
-            server_thread.Start(new IpAddrPort("127.0.0.1", 9000));
+            server_thread.Start(new IpAddrPort(ip_addr_var, port_var));
             Thread.Sleep(1000);
-
-            Thread client_thread = new Thread(IpcTestClass.RunAsClient);
-            client_thread.Start(new IpAddrPort("127.0.0.1", 9000));
 
             //while (true)
             {
@@ -36,6 +33,34 @@ namespace Getac.Csc.Util.Ipc
                 Thread.Sleep(1000);
             }
         }
+        public static void TestClient (string ip_addr_var, int port_var)
+        {
+            Thread client_thread = new Thread(IpcTestClass.RunAsClient);
+            client_thread.Start(new IpAddrPort(ip_addr_var, port_var));
+
+            //while (true)
+            {
+                //GetacSwrdcUtil.DebugIt("Main", "waiting");
+                Thread.Sleep(1000);
+            }
+        }
+
+        public static void TestIpc (string ip_addr_var, int port_var)
+        {
+            Thread server_thread = new Thread(IpcTestClass.RunAsServer);
+            server_thread.Start(new IpAddrPort(ip_addr_var, port_var));
+            Thread.Sleep(1000);
+
+            Thread client_thread = new Thread(IpcTestClass.RunAsClient);
+            client_thread.Start(new IpAddrPort(ip_addr_var, port_var));
+
+            //while (true)
+            {
+                //GetacSwrdcUtil.DebugIt("Main", "waiting");
+                Thread.Sleep(1000);
+            }
+        }
+
 
         public static void RunAsServer(object ip_addr_port_var)
         {
